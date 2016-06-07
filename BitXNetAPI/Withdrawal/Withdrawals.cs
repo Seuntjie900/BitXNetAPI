@@ -84,7 +84,10 @@ namespace BitXNetAPI.Withdrawal
             return _Withdrawal.ToWithdrawal();
         }
     }
-
+    public enum WithdrawalType
+    {
+        ZAR_EFT, NAD_EFT, KES_MPESA, MYR_IBG, IDR_LLG
+    }
     
 
 }

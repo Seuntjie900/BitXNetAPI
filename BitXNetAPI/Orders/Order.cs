@@ -10,6 +10,22 @@ namespace BitXNetAPI.Orders
     public class jsonOrders
     {
         public jsonOrder[] orders { get; set; }
+
+        public static Orders ToOrders(jsonOrders _Orders)
+        {
+            Orders tmp = new Orders();
+            foreach (jsonOrder O in _Orders.orders)
+                tmp.TradeOrders.Add(O.ToOrder());
+            return tmp;
+        }
+        public Orders ToOrders() { return ToOrders(this); }
+        public static jsonOrders FromOrders(Orders _Orders)
+        {
+            List<jsonOrder> tmpOrders = new List<jsonOrder>();
+            foreach (Order t in _Orders)
+                tmpOrders.Add(t.ToJsonOrder());
+            return new jsonOrders { orders = tmpOrders.ToArray() };
+        }
     }
     public class jsonOrder
     {
